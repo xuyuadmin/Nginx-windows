@@ -1,0 +1,20 @@
+反向代理的配置
+###当客户端访问www.itmayiedu.com,监听端口号为80直接跳转到真实ip服务器地址 127.0.0.1:8080
+	server {
+        listen       80;
+        server_name  www.itmayiedu.com;
+        location / {
+		 proxy_pass http://127.0.0.1:8080;
+            index  index.html index.htm;
+        }
+}
+###当客户端访问www.itmayiedu.com,监听端口号为80直接跳转到真实ip服务器地址 127.0.0.1:8081
+	server {
+        listen       80;
+        server_name  8081.itmayiedu.com;
+        location / {
+		  proxy_pass http://127.0.0.1:8081;
+            index  index.html index.htm;
+        }
+    }
+
