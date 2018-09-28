@@ -1,0 +1,30 @@
+准备环境
+备课环境域名
+客户端输入testbbs. meitedu.com.com 使用Nginx 转发到 bbs.itmayiedu.com
+客户端输入testwww. meitedu.com.com使用Nginx 转发到bbs.itmayiedu.com
+上课环境域名
+案例域名:meitedu.com 对应生产环境Linux服务器 103.218.2.206
+客户端输入testbbs.meitedu.com.com 使用Nginx 转发到 bbs.itmayiedu.com
+客户端输入testwww. meitedu.com.com使用Nginx 转发到bbs.itmayiedu.com
+
+阿里云服务器上安装Nginx配置
+
+	### 配置 beikewww.meitedu.com 反向代理跳转到http://www.
+    server {
+        listen       80;
+        server_name  beikewww.meitedu.com;
+       
+        location / {
+            proxy_pass http://www.meitedu.com;
+            index  index.html index.htm;
+        }
+    }
+		### 配置 beikebbs.meitedu.com 反向代理跳转到http://www.itmayiedu.com
+	  server {
+        listen       80;
+        server_name  beikebbs.meitedu.com;
+        location / {
+            proxy_pass http://bbs.itmayeidu.com;
+            index  index.html index.htm;
+        }
+    }
